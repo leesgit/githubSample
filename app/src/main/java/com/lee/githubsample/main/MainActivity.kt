@@ -2,6 +2,8 @@ package com.lee.githubsample.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,5 +51,13 @@ class MainActivity : DaggerAppCompatActivity() {
             githubAdapter.submitList(viewModel.repositories)
             githubAdapter.notifyDataSetChanged()
         })
+
+        viewModel.toast.observe(this, Observer {
+            toast(it.peekContent())
+        })
+    }
+
+    private fun toast(@StringRes msgRes:Int) {
+        Toast.makeText(this, msgRes, Toast.LENGTH_SHORT).show()
     }
 }
