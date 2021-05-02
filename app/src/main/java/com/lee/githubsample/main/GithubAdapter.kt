@@ -53,6 +53,7 @@ class GithubAdapter : ListAdapter<Repository, RecyclerView.ViewHolder>(object :
         fun bind(data: Repository) {
             with(binding) {
                 repository = data
+                executePendingBindings()
             }
         }
     }
