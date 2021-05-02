@@ -13,12 +13,9 @@ abstract class BaseDataSource {
             val response = call()
 
             if (response.isSuccessful) {
-                if (response.code() != 201) {
-                    val body = response.body()
-                    if (body != null) return RemoteResult.success(body)
-                } else {
-                    return RemoteResult.check(response.body().toString())
-                }
+                //when(response.code)
+                val body = response.body()
+                if (body != null) return RemoteResult.success(body)
             }
 
             return error(" ${response.code()} ${response.message()}")
